@@ -32,6 +32,19 @@
             color: yellow;
         }
     </style>
+
+    <script>
+        function updateDemo1() {
+            document.getElementById("demo1").innerHTML="hello world1"
+        }
+        // 이 경우에 script가 읽힐 때, load2가 존재하지 않아 실행안됨.
+        document.getElementById("load2").innerHTML="hello world load1"
+
+    </script>
+    
+    <!-- 외부 js import시에 아래와 같이 선언한다. -->
+    <script src="js/myjs.js"></script>
+
 </head>
 <body>
     <!-- css적용방법 3가지 : 인라인, 내부스타일, 외부스타일 -->
@@ -63,5 +76,28 @@
         <p>첫번째 단락</p>
         <section><p>두번째 단락</p></section>
     </div>
+
+    <h2>javascript 예시</h2>
+    <p id="demo1">변경될 내용1</p>
+    <button onclick="updateDemo1()">변경버튼1</button>
+    <p id="demo2">변경될 내용2</p>
+    <button onclick="updateDemo2()">변경버튼2</button>
+    <p id="demo3">변경될 내용3</p>
+    <button onclick="updateDemo3()">변경버튼3</button>
+
+    <h2>js 로드 순서</h2>
+    <p id="load1">js 로드1</p>
+    <p id="load2">js 로드2</p>
+
+    <script>
+        document.getElementById("load2").innerHTML="hello world load2"
+        function updateDemo2() {
+            document.getElementById("demo2").innerHTML="hello world2"
+        }
+    </script>
+
+    
+
+    
 </body>
 </html>

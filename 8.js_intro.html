@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js intro</title>
+    <script>
+        function varConsole1(){
+            console.log("hello world");
+            // var, let, const 셋 중에 하나의 키워드를 사용용
+            var a = 10;
+            var b = "10";
+            var c = 20;
+            console.log(a+b);
+            console.log(a+c);
+        }
+        function varConsole2() {
+            var arr = [10,"20",30,'40',];
+            arr.push(50);
+            for(var i =0; i < arr.length; i++) {
+                console.log(arr[i]);
+            }
+            arr.forEach(a=>console.log(a));
+            
+            var arr2 = [10,20,30,40];
+            var total = 0;
+            for(var i=0; i<arr2.length; i++) {
+                total+=arr2[i];
+            }
+        
+            // 팝업. 확인버튼 누르기전까지 이후 코드 실행x 화면상에서도 조작 불가하다.
+            // 밑의 코드같은 경우 팝업이 뜨고, 팝업을 닫아야 밑의 helloworld가 출력된다다
+            alert("total : " + total);
+            console.log("hello world");
+        }
+
+        function varConsole3() {
+            var arr = [10,20,function test(){console.log("hello world")}];
+            arr[2]();
+        }
+
+        function varExample() {
+            // var는 같은 변수명에 재선언과 재할당 가능.
+            var a = 10;
+            var a = 20;
+            console.log(a);
+        }
+
+        function letExample() {
+            // let은 같은 변수명에 재할당만 가능.
+            let a =10;
+            a = 20;
+        }
+        
+        function constExample() {
+            // const는 재선언, 재할당 불가능.
+            const a = 10;
+            a= 20;
+            console.log(a); // 에러발생생
+        }
+
+        function changeText1() {
+            document.getElementById("change1").innerHTML="안녕히 가세용"
+            
+        }
+
+        function changeText2() {
+            let arr = document.getElementsByClassName("change2");
+            for(let i = 0; i < arr.length; i++) {
+                arr[i].innerHTML="안녕히 가세용용"
+            }
+        }
+
+        function changeText3() {
+            let arr = document.getElementsByTagName("h5");
+            for(let i = 0; i < arr.length; i++) {
+                arr[i].innerHTML="안녕히 가세용용용용용"
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h2>javascript 변수와 출력</h2>
+    <button onclick="varConsole1()">console에 변수 출력하기1</button>
+    <button onclick="varConsole2()">console에 변수(배열) 출력하기2</button>
+    <button onclick="varConsole3()">console에 배열안의 함수를 통해 출력하기3</button>
+
+    <h2>javascript 변수 선언 키워드</h2>
+    <button onclick="varExample()">var 예제</button>
+    <button onclick="letExample()">let 예제</button>
+    <button onclick="constExample()">const 예제</button>
+
+    <h2>id선택, class선택, tag선택</h2>
+    <p id = "change1">안녕하세용</p>
+    <button onclick="changeText1()">change1 ID 내용 변경</button>
+
+    <p class="change2">안녕하세요</p>
+    <p class="change2">안녕하세요</p>
+    <button onclick="changeText2()">change2 class 내용 변경</button>
+
+    <h5>안녕하세용용용용</h5>
+    <h5>안녕하세용용용용</h5>
+    <button onclick="changeText3()">h5태그 내용 변경</button>
+</body>
+</html>
