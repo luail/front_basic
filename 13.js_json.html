@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js json</title>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse; margin:auto;">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id = "name">hongildong</td>
+                <td id = "age">800</td>
+                <td id = "score">800</td>
+            </tr>
+        </tbody>
+    </table>
+    <table border="2" style="border-collapse: collapse; margin:auto;">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>score</th>
+            </tr>
+        </thead>
+        <tbody id = "inputs">
+
+        </tbody>
+    </table>
+    <script>
+        const jasonText ='{"name":"Alice","age":25,"score":85}';
+        // json을 javascript 객체로 parsing(역직렬화)
+        const obj = JSON.parse(jasonText);// {name:"Alice",age:25,score:85}
+        document.getElementById("name").innerHTML = obj.name;
+        document.getElementById("age").innerHTML =obj.age;
+        document.getElementById("score").innerHTML =obj.score;
+
+        const jasonText2 = '[{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]';
+        const obj2 = JSON.parse(jasonText2);
+        
+        for (let i=0; i<obj2.length; i++){
+            console.log(obj2[i]);
+            let obj2Element = document.getElementById("inputs");
+            // obj2Element.innerHTML += "<tr><td>"+obj2[i].name+"</td><td>"+obj2[i].age+"</td><td>"+obj2[i].score+"</td></tr>"
+            // javascript에서 문자열에 js변수를 끼워넣을 때 백틱(`)에 ${}를 활용
+            obj2Element.innerHTML += `<tr><td>${obj2[i].name}</td><td>${obj2[i].age}</td><td>${obj2[i].score}</td></tr>`;
+        }
+        
+        //  json 직렬화
+        console.log(obj2);
+        const jsonText3 = JSON.stringify(obj2);
+        console.log(jsonText3)
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js function</title>
+    <script>
+        function basicFuntion() {
+            alert("helloWorld")
+        }
+
+        const variableFuntion1 = function(){
+            alert("함수를 변수로 setting")
+        }
+
+        // 실행문이 1줄밖에 없을 경우 아래와 같은 함수형에서 중괄호 생략가능.
+        const variableFuntion2 = ()=>alert("함수를 변수로 setting")
+
+        function returnFuntion() {
+            console.log(makeString1());
+            console.log(makeString2());
+            console.log(makeString3());
+        }
+
+        function makeString1() {
+            return "hello world1";
+        }
+        
+        const makeString2 = ()=>{return "hello world2";};
+        
+        // 실행문이 1줄일 경우 중괄호와 return까지 생략 후 함수형 프로그래밍으로 세팅.
+        const makeString3 = ()=>"hello world3";
+
+        function paramFuntion1(a,b) {
+            alert(a+b);
+        }
+
+        // 매개변수에 default값 세팅 가능능
+        function paramFuntion2(name="홍길동") {
+            alert("이름은 "+name+" 입니다.");
+        }
+
+        // ...을 통해 매개변수를 배열형태로 받을 수 있음.
+        function paramFuntion3(...numbers) {
+            let sum = 0;
+            for(let i = 0; i < numbers.length; i++) {
+                sum += numbers[i];
+            }
+            alert("총합은 " + sum);
+        }
+
+        function functionWithException() {
+            try{
+                example();
+            } catch(e) {
+                console.log(e);
+                console.log(e.message);
+            }
+            console.log("그 이후 코드 실행")
+
+            // const response = axios.get("https://naver.com");
+            const response = {data1 : {id:1, name:'kim'}};
+            // log로 들어온 데이터의 키 값을 확인 후 코딩해야함.
+            // try-catch로 감싸줘서 예외처리를 해야함.
+            console.log(response);
+            console.log(response.data1.name);
+        }
+
+        function showPerson() {
+            const person = createPerson('홍길동,',20);
+            console.log(person.name);
+            console.log(person.age);
+            console.log(person.printPerson())
+            person.name = '홍길동2';
+            console.log(person.printPerson())
+        }
+
+        function createPerson(name,age) {
+            return {
+                name:name,
+                age:age,
+                printPerson:function(){
+                    // this : 객체 자기 자신을 의미.
+                    return "이름은 " + this.name + " 나이는 " + this.age;
+                }
+            }
+        }
+
+        function reload() {
+            window.location.reload();
+        }
+
+        function loactionMove() {
+            window.location.href = "https://naver.com";
+        }
+    </script>
+</head>
+<body>
+    <h2>js 기본 함수 호출</h2>
+    <button onclick="basicFuntion()">함수 호출 basic</button>
+    <button onclick="variableFuntion1()">변수 함수 호출1</button>
+    <button onclick="variableFuntion2()">변수 함수 호출2</button>
+    <button onclick="returnFuntion()">리턴이 있는 함수 호출</button>
+    <button onclick="paramFuntion1(1,2)">매개변수 있는 함수 호출1</button>
+    <button onclick="paramFuntion2('홍길동2')">매개변수 있는 함수 호출2</button>
+    <button onclick="paramFuntion3(1,2,3,4,5,6)">매개변수 있는 함수 호출3</button>
+
+    <h2>js 예외처리</h2>
+    <button onclick="functionWithException()">예외처리 함수 호출.</button>
+
+    <h2>객체안에 있는 함수 호출</h2>
+    <button onclick="showPerson()">person 객체 생성 및 조회</button>
+
+    <h2>window 객체</h2>
+    <button onclick="reload()">화면 새로고침</button>
+    <button onclick="loactionMove()">화면이동</button>
+
+    <h2>event listner 객체 활용</h2>
+    <button id="button1">버튼1</button>
+    <button onclick="scrollEvent()">스크롤링시 이벤트리스너 동작</button>
+
+    <h2>html 요소 동적으로 생성</h2>
+    <button onclick="addItem()">항목추가</button>
+    <div id="target">
+        <input type="text"><br>
+    </div>
+    <script>
+        function addItem() {
+            let divElement = document.getElementById('target');
+            divElement.innerHTML += "<input type='text'><br>";
+        }
+
+
+
+        const button = document.getElementById("button1");
+        if(button) {
+            // click이라는 약속된 문자열을 동작의 트리거로 사용
+            // 즉, 해당 버튼이 클릭되면 매개변수로 주어지는 함수가 실행
+            button.addEventListener('click', ()=>alert('hello world'));
+        }
+        
+        function scrollEvent() {
+            window.addEventListener('scroll', function(){console.log("hello world")});
+        }
+    </script>
+</body>
+</html>

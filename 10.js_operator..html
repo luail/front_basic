@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js operator</title>
+
+    <script>
+        function showBiggerNum(a,b) {
+            const bigger = a > b ? a : b;
+            document.getElementById("result").innerHTML=bigger;
+        }
+
+        function showComparism() {
+            const a = 3;
+            const b = '3';
+            console.log(a==b);   //==은 값만 비교(따라서 ture)
+            console.log(a===b);  //===은 타입까지 비교(따라서 false)
+
+            const x = 'abc';
+            const y = 'bcd';
+            console.log(x < y);
+        }
+    </script>
+</head>
+<body>
+    <h2>연산자 예시</h2>
+    <button onclick="showBiggerNum(3,4)">삼항연산자 결과</button>
+    <button onclick="showComparism()">숫자, 문자비교 결과</button>
+    <p id="result">결과</p>
+
+    <h2>void 연산자 활용</h2>
+    <a href="" onclick="alert('안녕하세용')">클릭해주세요.</a>
+    <!-- a태그를 link용도로 사용하지 않고, 아무런 동작도 없도록 세팅할 때 void사여ㅛㅇㅇ -->
+    <a href="javascript:void(0)" >클릭해주세요2.</a>
+</body>
+</html>
