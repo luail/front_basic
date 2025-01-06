@@ -35,7 +35,7 @@
             alert(a+b);
         }
 
-        // 매개변수에 default값 세팅 가능능
+        // 매개변수에 default값 세팅 가능
         function paramFuntion2(name="홍길동") {
             alert("이름은 "+name+" 입니다.");
         }
@@ -51,14 +51,15 @@
 
         function functionWithException() {
             try{
-                example();
-            } catch(e) {
-                console.log(e);
-                console.log(e.message);
+                example();  // 이 때 example이라는 함수는 없으므로 예외가 나올 것.
+            } catch(e) {    // try-catch로 예외처리를 하였기에 그 이후 코드 실행이 콘솔에 찍힌다.
+                console.log(e);   // 이 때 e는 자바에서의 모든 예외의 조상인 Exception과 동일하다 생각해도 될듯.
+                                  // 몇번째 코드가 오류인지 또한 나옴. 
+                console.log(e.message);  // 오류 메세지만 콘솔에 나옴.
             }
             console.log("그 이후 코드 실행")
 
-            // const response = axios.get("https://naver.com");
+            // const response = axios.get("https://naver.com"); axios를 통해 데이터가 naver에서 들어올 경우 키값이 뭔지 확인필요.
             const response = {data1 : {id:1, name:'kim'}};
             // log로 들어온 데이터의 키 값을 확인 후 코딩해야함.
             // try-catch로 감싸줘서 예외처리를 해야함.
