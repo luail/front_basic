@@ -26,7 +26,7 @@
     </nav>
     <div class="container">
         <div class="page-hedder"><h3>글쓰기</h3></div>
-        <form action="http://localhost:8081/post/register2" method="post" enctype="application/x-www-form-urlencoded">
+        <form>
             <div class="form-group">
                 <label for="title">제목</label>
                 <input type="text" class="form-control" name="title" id="title">
@@ -35,8 +35,23 @@
                 <label for="contents">내용</label>
                 <textarea name="contents" class="form-control" id="contents" rows="10" placeholder="여기에 글을 작성하세요"></textarea>
             </div>
-            <button type="submit" class="btn btn-secondary">제출</button>
+            <button type="button" class="btn btn-secondary" onclick="postData()">제출</button>
         </form>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        async function postData() {
+            const title = document.getElementById('title').value;
+            const contents = document.getElementById('contents').value;
+            // formdata형식 : title=helloworld&contents=hello world is ...
+            // js코드를 통해 title, contents 등을 검증(검사)할 수 있어서, js를 통한 form형식 데이터 조립 가능.
+            const serverData = new FormData();
+            serverData.append('title',title);
+            serverData.append('contents',contents);
+            console.log(serverData);
+            await axios.post('http://localhost:8081/post/register2', serverData);
+            window.location.href = "post_list.html";
+        }
+    </script>
 </body>
 </html>
