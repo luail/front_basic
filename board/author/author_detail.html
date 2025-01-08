@@ -26,31 +26,40 @@
         </ul>
     </nav>
     <div class="container">
-        <div class="page-hedder"><h3>게시글 목록</h3></div>
-        <div class="float-end">
-                <a href="post_register_js_json.html" class="btn btn-primary">글쓰기</a>
-        </div>
+        <div class="page-hedder"><h3>회원 상세조회</h3></div>
+        <input type="text" id="postId">
+        <button class="btn btn-primary" onclick="serverData()">조회</button>
         <table class="table">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>title</th>
-                </tr>
-            </thead>
-            <tbody id="bodyData">
-
-            </tbody>
+            <tr>
+                <td>id</td>
+                <td id="inputId"></td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td id="name"></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td id="email"></td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td id="password"></td>
+            </tr>
         </table>
     </div>
+
     <script>
         async function serverData() {
-            const response = await axios.get('http://ec2-3-36-74-198.ap-northeast-2.compute.amazonaws.com:8081/post/list');
+            const response = await axios.get(`http://localhost:8081/author/detail/${document.getElementById('postId').value} `);
             console.log(response);
-            for (let i = 0; i < response.data.length; i++) {
-                document.getElementById('bodyData').innerHTML += `<tr><td>${response.data[i].id}</td><td>${response.data[i].title}</td></tr>`;
-            }
+            document.getElementById('inputId').innerHTML = response.data.id;
+            document.getElementById('name').innerHTML = response.data.name;
+            document.getElementById('email').innerHTML = response.data.email;
+            document.getElementById('password').innerHTML = response.data.password;
+
         }
-        serverData();
+        serverData;
     </script>
 </body>
 </html>

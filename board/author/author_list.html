@@ -26,15 +26,16 @@
         </ul>
     </nav>
     <div class="container">
-        <div class="page-hedder"><h3>게시글 목록</h3></div>
+        <div class="page-hedder"><h3>회원목록</h3></div>
         <div class="float-end">
-                <a href="post_register_js_json.html" class="btn btn-primary">글쓰기</a>
+                <a href="author_register_js.html" class="btn btn-primary">회원가입</a>
         </div>
         <table class="table">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>title</th>
+                    <th>name</th>
+                    <th>email</th>
                 </tr>
             </thead>
             <tbody id="bodyData">
@@ -44,11 +45,13 @@
     </div>
     <script>
         async function serverData() {
-            const response = await axios.get('http://ec2-3-36-74-198.ap-northeast-2.compute.amazonaws.com:8081/post/list');
+            const response = await axios.get('http://localhost:8081/author/list');
             console.log(response);
-            for (let i = 0; i < response.data.length; i++) {
-                document.getElementById('bodyData').innerHTML += `<tr><td>${response.data[i].id}</td><td>${response.data[i].title}</td></tr>`;
+
+            for(let i = 0; i < response.data.length; i++) {
+                document.getElementById('bodyData').innerHTML += `<tr><td>${response.data[i].id}</td><td>${response.data[i].name}</td><td>${response.data[i].email}</td></tr>`;
             }
+            
         }
         serverData();
     </script>
